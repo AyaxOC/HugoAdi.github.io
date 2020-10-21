@@ -18,6 +18,13 @@ const constraints = {
       facingMode: "environment"
     }, 
 };
+function guardar() {        
+    var link = document.createElement('a')
+    link.download = "foto.png";
+
+    link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    link.click();
+}
 
 function capturarFoto(){
     canvas.width = video.videoWidth;
@@ -54,5 +61,8 @@ button.addEventListener('click',event =>{
 
 button2.addEventListener('click',event =>{
     capturarFoto();
+    guardar();
 });
+
+
 
