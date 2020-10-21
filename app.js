@@ -2,7 +2,7 @@ const video = document.getElementById('video');
 const button = document.getElementById('button');
 const button2 = document.getElementById('button2');
 const canvas = document.getElementById('canvas');
-
+//Definir tama;os base de la camara
 const constraints = {
     video: {
       width: {
