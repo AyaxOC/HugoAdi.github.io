@@ -2,7 +2,8 @@ const video = document.getElementById('video');
 const button = document.getElementById('button');
 const button2 = document.getElementById('button2');
 const canvas = document.getElementById('canvas');
-//Definir tama;os base de la camara
+
+//Definir tamaños base de la camara
 const constraints = {
     video: {
       width: {
@@ -18,6 +19,8 @@ const constraints = {
       facingMode: "environment"
     }, 
 };
+
+//Almacena la imagen tomada por la aplicacion en formatro .png
 function guardar() {        
     var link = document.createElement('a')
     link.download = "foto.png";
@@ -26,12 +29,14 @@ function guardar() {
     link.click();
 }
 
+//Captura la actual imagen del canvas
 function capturarFoto(){
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext("2d").drawImage(video, 0, 0);
 }
 
+//Determina el tipo de navegador que usas y si el uso de la camara es compatible o no
 function navegador(){
     if (
     !"mediaDevices" in navigator ||
@@ -42,6 +47,7 @@ function navegador(){
     }
 }
 
+//Se encarga de iniciar la aplicacion de la camara, la activa y comienza el video
 async function inicializarCamara() {
     //stopVideoStream();
     //constraints.video.facingMode = useFrontCamera ? "user" : "environment";
@@ -53,12 +59,14 @@ async function inicializarCamara() {
     }
 }
 
+//Evento añadido al boton para comenzar a tomar imagen de la camara tracera, mandando a llamar a las funciones navegador e inicializar
 button.addEventListener('click',event =>{
     console.log("aiuda");
     navegador();
     inicializarCamara();
 });
 
+//Evento añadido al boton para tomar la foto del canvas
 button2.addEventListener('click',event =>{
     capturarFoto();
     guardar();
